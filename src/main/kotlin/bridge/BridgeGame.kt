@@ -18,18 +18,22 @@ class BridgeGame(
         return upBridge to bottomBridge
     }
 
-    fun retry() {}
+    fun retry() {
+        upBridge.clear()
+        bottomBridge.clear()
+        isDone = false
+    }
 
     private fun updateUpBridge(command: String, isCorrect: Boolean) {
         if (command == "U" && isCorrect) {
             upBridge += "O"
             return
         }
-        if (isCorrect) {
-            upBridge += ""
+        if (command == "U") {
+            upBridge += "X"
             return
         }
-        upBridge += "X"
+        upBridge += " "
     }
 
     private fun updateBottomBridge(command: String, isCorrect: Boolean) {
@@ -37,10 +41,10 @@ class BridgeGame(
             bottomBridge += "O"
             return
         }
-        if (isCorrect) {
-            bottomBridge += ""
+        if (command == "D") {
+            bottomBridge += "X"
             return
         }
-        bottomBridge += "X"
+        bottomBridge += " "
     }
 }
